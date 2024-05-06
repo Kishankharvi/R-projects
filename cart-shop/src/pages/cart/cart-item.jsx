@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ShopContext } from "../../context/shop-context";
 
 export const CartItem = (props) => {
+  const { removeFromCart, updateCartItemCount, addToCart } =
+    useContext(ShopContext);
+  const { id, productName, productImage, price } = props.data;
   return (
     <div>
       <div className="cartItem">
         <img src={productImage} />
         <div className="description">
           <p>
-            <b>{productImage}</b>
+            <b>{productName}</b>
           </p>
           <p>Price :${price}</p>
           <div className="countHandler">
