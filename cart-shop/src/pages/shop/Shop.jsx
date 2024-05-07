@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import { Product } from "./product";
-import { RestaurantContext } from "../../context/ResturantContext";
+
 import "./Shop.css";
 
 export const Shop = () => {
