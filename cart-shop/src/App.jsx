@@ -5,6 +5,7 @@ import { Contact } from "./pages/Contact";
 import { Navbar } from "./components/Navbar";
 import { Shop } from "./pages/shop/Shop";
 import { Cart } from "./pages/cart/Cart";
+import { CardInfo } from "./pages/shop/CardInfo";
 import "./App.css";
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
             <Route path="/" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/CardInfo" element={<CardInfo />} />
           </Routes>
         </Router>
       </ShopContextProvider>
-      ;
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
+import pro from "../assets/products/1.png";
 import "./Navbar.css";
 export const Navbar = () => {
   console.log("nav opened");
@@ -16,6 +17,9 @@ export const Navbar = () => {
         </Link>
         <Link to="/cart" onClick={console.log("clicked3")}>
           <ShoppingCart size={32} />
+        </Link>
+        <Link to="/profile">
+          <span className="circle"></span>
         </Link>
       </div>
     </div>

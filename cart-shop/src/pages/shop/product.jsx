@@ -1,22 +1,51 @@
 import React, { useContext } from "react";
-import { ShopContext } from "../../context/shop-context";
-import { Img } from "react-image";
-export const Product = (props) => {
-  const { id, productName, productImage, price } = props.data;
-  const { addToCart, cartItems } = useContext(ShopContext);
-  const cartItemCount = cartItems[id];
+import { useNavigate } from "react-router-dom";
+export const Product = ({
+  cloudinaryImageId,
+  name,
+  areaName,
+  sla,
+  costForTwo,
+  avgRatingString,
+}) => {
+  const Navigate = useNavigate();
+
+  function handleclick() {
+    Navigate("/CardInfo");
+  }
+  console.log("ENter product component");
   return (
-    <div className="product">
-      <Img src={productImage} />
-      <div className="description">
-        <p>
-          <b>{productName}</b>
-        </p>
-        <p>${price}</p>
-      </div>
-      <button className="addToCartBtn" onClick={() => addToCart(id)}>
-        Add to Cart {cartItemCount > 0 && <>({cartItemCount})</>}
-      </button>
+    <div className="card" onClick={handleclick}>
+      <img
+        className="image11"
+        src={
+          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/" +
+          cloudinaryImageId
+        }
+        alt={name}
+      />
+      <h3>{name}</h3>
+
+      <h5>{areaName}</h5>
+      <span>
+        <h4
+          style={
+            avgRatingString < 4
+              ? { backgroundColor: "red" }
+              : avgRatingString === "--"
+              ? { backgroundColor: "white", color: "black" }
+              : { color: "white" }
+          }
+        >
+          <i className="fa-solid fa-star"></i>
+          {avgRatingString}
+        </h4>
+        <h4>•</h4>
+
+        <h4>{sla?.lastMileTravelString ?? "2.0 km"}</h4>
+        <h4>•</h4>
+        <h4>{costForTwo ?? "₹200 for two"}</h4>
+      </span>
     </div>
   );
 };
