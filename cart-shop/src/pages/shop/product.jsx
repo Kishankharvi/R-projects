@@ -11,7 +11,16 @@ export const Product = ({
   const Navigate = useNavigate();
 
   function handleclick() {
-    Navigate("/CardInfo");
+    Navigate("/CardInfo", {
+      state: {
+        name,
+        areaName,
+        sla,
+        costForTwo,
+        avgRatingString,
+        cloudinaryImageId,
+      },
+    });
   }
   console.log("ENter product component");
   return (

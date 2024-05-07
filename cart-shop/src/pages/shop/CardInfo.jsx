@@ -1,9 +1,22 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+
 import { useLocation } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
+
 import useResMenuData from "../../hooks/useResMenuData.jsx";
 import "../../App.css";
 export const CardInfo = () => {
+  const location = useLocation();
+  const {
+    name,
+    areaName,
+    sla,
+    costForTwo,
+    avgRatingString,
+    cloudinaryImageId,
+  } = location.state;
+
   const { resId } = useParams(); // call useParams and get value of restaurant id using object destructuring
   const [restaurant, menuItems] = useResMenuData(
     "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=",
@@ -17,29 +30,29 @@ export const CardInfo = () => {
     <div className="restaurant-menu">
       <div className="restaurant-summary">
         <img
-          className="restaurant-img"
+          className="image11"
           src={
-            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-            restaurant?.cloudinaryImageId
+            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/" +
+            cloudinaryImageId
           }
-          alt={restaurant?.name}
+          alt={name}
         />
         <div className="restaurant-summary-details">
-          <h2 className="restaurant-title">{restaurant?.name}</h2>
+          <h2 className="restaurant-title">{name}</h2>
 
           <div className="restaurant-details">
             <div
               className="restaurant-rating"
               style={
-                restaurant?.avgRating < 4
+                avgRatingString.avgRating < 4
                   ? { backgroundColor: "lightred" }
-                  : restaurant?.avgRating === "--"
+                  : avgRatingString.avgRating === "--"
                   ? { backgroundColor: "white", color: "black" }
                   : { color: "white" }
               }
             >
               <i className="fa-solid fa-star"></i>
-              <span>{restaurant?.avgRating}</span>
+              <span>{avgRatingString.avgRating}</span>
             </div>
             <div className="restaurant-rating-slash">|</div>
             <div>{restaurant?.sla?.slaString}</div>
