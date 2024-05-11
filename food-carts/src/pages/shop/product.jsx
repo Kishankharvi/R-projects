@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../../../cart-shop/src/constant";
 export const Product = ({
   cloudinaryImageId,
+
   name,
   areaName,
   sla,
@@ -10,8 +12,9 @@ export const Product = ({
 }) => {
   const Navigate = useNavigate();
 
+  console.log(cloudinaryImageId);
   function handleclick() {
-    Navigate("/CardInfo", {
+    Navigate("/cardinfo", {
       state: {
         name,
         areaName,
@@ -25,14 +28,7 @@ export const Product = ({
   console.log("ENter product component");
   return (
     <div className="card" onClick={handleclick}>
-      <img
-        className="image11"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/" +
-          cloudinaryImageId
-        }
-        alt={name}
-      />
+      <img src={imageUrl + cloudinaryImageId} />
       <h3>{name}</h3>
 
       <h5>{areaName}</h5>

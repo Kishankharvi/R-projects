@@ -54,7 +54,8 @@
 
 .body-container {
   min-height: 87vh;
-  z-index: 1;
+  overflow-y: hidden;
+  margin-top: 60px;
 }
 .restaurant-list {
   width: auto;

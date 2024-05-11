@@ -1,0 +1,44 @@
+.Navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  height: 80px;
+  background-color: rgba(228, 112, 16, 0.568);
+  border-radius: 5px;
+  box-shadow: -2px 7px 5px -6px rgba(0, 0, 0, 0.61);
+  color: rgb(41, 19, 19);
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow-y: hidden;
+  opacity: 1;
+}
+
+.links {
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links a {
+  text-decoration: none;
+  color: rgb(10, 4, 4);
+  margin-left: 20px;
+  font-size: 22px;
+}
+.links a:hover {
+  transform: scale(1.09999);
+}
+.circle {
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+  border-radius: 100%;
+  background-color: beige;
+}

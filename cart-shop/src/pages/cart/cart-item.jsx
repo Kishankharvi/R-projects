@@ -1,26 +1,28 @@
 import React, { useContext } from "react";
+import { imageUrl } from "../../constant";
 import { ShopContext } from "../../context/shop-context";
 
-export const CartItem = (props) => {
+// CartItem.jsx
+export const CartItem = ({ data, quantity }) => {
   const { removeFromCart, updateCartItemCount, addToCart } =
     useContext(ShopContext);
-  const { id, productName, productImage, price } = props.data;
+  const { id, cloudinaryImageId, price, name } = data;
+
   return (
     <div>
       <div className="cartItem">
-        <img src={productImage} />
+        <img src={imageUrl + cloudinaryImageId} />
         <div className="description">
           <p>
-            <b>{productName}</b>
+            <b>{name}</b>
           </p>
-          <p>Price :${price}</p>
+          <p>Price: ${price}</p>
           <div className="countHandler">
             <button onClick={() => removeFromCart(id)}>-</button>
             <input
-              value={CartItem[id]}
+              value={quantity}
               onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
             />
-
             <button onClick={() => addToCart(id)}>+</button>
           </div>
         </div>

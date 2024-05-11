@@ -1,7 +1,11 @@
 import { createContext, useState } from "react";
-import { PRODUCTS } from "../itemm";
 
 export const ShopContext = createContext(null);
+const PRODUCTS = [
+  { id: 1, name: "Product 1", price: 10 },
+  { id: 2, name: "Product 2", price: 20 },
+  // Add more products as needed
+];
 const getDefaultCart = () => {
   let cart = {};
   for (let i = 1; i < PRODUCTS.length + 1; i++) {
