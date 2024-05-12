@@ -8,7 +8,7 @@ export const Navbar = () => {
   return (
     <div className="Navbar">
       <div className="links">
-        <Link to="/" onClick={console.log("clicked")}>
+        <Link to="/shop" onClick={console.log("clicked")}>
           Shop
         </Link>
 

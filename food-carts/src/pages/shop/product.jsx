@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { imageUrl } from "../../../../cart-shop/src/constant";
+import "./product.css";
 export const Product = ({
   cloudinaryImageId,
-
+  cuisines,
   name,
   areaName,
   sla,
@@ -17,6 +18,7 @@ export const Product = ({
     Navigate("/cardinfo", {
       state: {
         name,
+        cuisines,
         areaName,
         sla,
         costForTwo,
@@ -45,11 +47,14 @@ export const Product = ({
           <i className="fa-solid fa-star"></i>
           {avgRatingString}
         </h4>
+
         <h4>•</h4>
 
         <h4>{sla?.lastMileTravelString ?? "2.0 km"}</h4>
         <h4>•</h4>
         <h4>{costForTwo ?? "₹200 for two"}</h4>
+        <h4>•</h4>
+        <h4>{cuisines}</h4>
       </span>
     </div>
   );
