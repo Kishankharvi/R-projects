@@ -1,26 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
-
+import { useAuth } from "./../context/Authcontext";
+import axios from "axios";
 import "./Navbar.css";
+
 export const Navbar = () => {
-  console.log("nav opened");
+  const { isLoggedIn, user, logout } = useAuth();
+
   return (
     <div className="Navbar">
       <div className="links">
-        <Link to="/shop" onClick={console.log("clicked")}>
-          Shop
-        </Link>
-
-        <Link to="/contact" onClick={console.log("clicked2")}>
-          Contact
-        </Link>
-        <Link to="/cart" onClick={console.log("clicked3")}>
+        <Link to="/shop">Shop</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/cart">
           <ShoppingCart size={32} />
         </Link>
-        <Link to="/profile">
-          <span className="circle"></span>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <Link to="/profile">{user ? user.username : "Profile"}</Link>
+            <button onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </div>
     </div>
   );

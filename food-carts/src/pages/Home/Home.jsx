@@ -15,7 +15,9 @@ const Home = () => {
           <button style={styles.button} onClick={() => navigate("/login")}>
             Login
           </button>
-          <button style={styles.button}>Sign In</button>
+          <button style={styles.button} onClick={() => navigate("/signin")}>
+            Sign In
+          </button>
         </div>
       </div>
     </div>
