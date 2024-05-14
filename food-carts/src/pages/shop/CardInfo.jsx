@@ -27,14 +27,14 @@ export const CardInfo = () => {
       cloudinaryImageId,
       cuisine: selectedCuisine, // Add selected cuisine to cart item
     });
-  };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      Navigate("/cart");
-    }, 5000);
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        Navigate("/cart");
+      }, 5000);
 
-    return () => clearTimeout(timer);
-  }, [Navigate]);
+      return () => clearTimeout(timer);
+    }, [Navigate]);
+  };
 
   const handleSelectCuisine = (e) => {
     setSelectedCuisine(e.target.value);
