@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import CartItem from "./cart-item";
 import { ShopContext } from "../../context/shop-context";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,15 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { cartItems } = useContext(ShopContext);
   const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    // Calculate initial total amount based on prices of items in the cart
+    const initialTotalAmount = cartItems.reduce(
+      (total, item) => total + item.price,
+      0
+    );
+    setTotalAmount(initialTotalAmount);
+  }, [cartItems]);
   const navigate = useNavigate(); // Use useNavigate hook to navigate to new pages
 
   const handleUpdateTotalAmount = (newTotal) => {

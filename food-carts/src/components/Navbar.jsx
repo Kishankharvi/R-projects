@@ -6,7 +6,7 @@ import axios from "axios";
 import "./Navbar.css";
 
 export const Navbar = () => {
-  const { isLoggedIn, user, logout } = useAuth();
+  const { isLoggedIn, user, logout, isSignedIn } = useAuth();
 
   return (
     <div className="Navbar">
@@ -16,7 +16,7 @@ export const Navbar = () => {
         <Link to="/cart">
           <ShoppingCart size={32} />
         </Link>
-        {isLoggedIn ? (
+        {isLoggedIn || isSignedIn ? (
           <>
             <Link to="/profile">{user ? user.username : "Profile"}</Link>
             <button onClick={logout}>Logout</button>

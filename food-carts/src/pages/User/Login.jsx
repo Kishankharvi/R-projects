@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import "./login.css";
 import { AuthContext } from "./../../context/Authcontext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const Navigate = useNavigate();
-  const { login } = useContext(AuthContext); // Accessing login method from AuthContext
+  const { login, isLoggedIn } = useContext(AuthContext); // Accessing login method from AuthContext
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
@@ -12,7 +12,10 @@ const Login = () => {
     console.log(formData);
     console.log(formData.get("email"));
     login(formData);
-    Navigate("/shop");
+
+    {
+      isLoggedIn ? Navigate("/shop") : Navigate("/login");
+    }
   };
 
   return (
@@ -26,6 +29,11 @@ const Login = () => {
           <input type="password" name="password" />
           <button type="submit">Submit</button>
         </form>
+      </div>
+      <div>
+        <p>
+          <Link to="/signin">Create an acount?</Link>
+        </p>
       </div>
     </div>
   );

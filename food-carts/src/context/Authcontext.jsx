@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState(null);
 
   const login = async (formData) => {
@@ -17,12 +18,39 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       console.log("Response:", response.data);
-      setIsLoggedIn(true);
-      setUser(response.data.user); // Assuming the server returns user data
+      if (response.data.message === "Login successful") {
+        setIsLoggedIn(true);
+        setUser(response.data.user); // Assuming the server returns user data
+      } else {
+        setIsLoggedIn(false);
+        setUser(null);
+      }
+      // Assuming the server returns user data
     } catch (error) {
       console.error("Error:", error);
-      setIsLoggedIn(false);
-      setUser(null);
+    }
+  };
+  const signin = async (formData) => {
+    try {
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const response = await axios.post("http://localhost/signin.php", {
+        name,
+        email,
+        password,
+      });
+      console.log("Response:", response.data);
+      if (response.data.message == "Data added to database successfully") {
+        setIsSignedIn(true);
+        setUser(response.data.user); // Assuming the server returns user data
+      } else {
+        setIsSignedIn(false);
+        setUser(null);
+      }
+      // Assuming the server returns user data
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
   const logout = async () => {
@@ -41,7 +69,9 @@ export const AuthProvider = ({ children }) => {
     // Perform logout logic (e.g., destroy session on server)
   };
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, user, login, logout, signin, isSignedIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
